@@ -61,6 +61,18 @@ module.exports = {
       }
     ]
   },
+  vue: {
+        loaders: { 
+          css: 'vue-style-loader!css-loader',
+          sass: 'vue-style-loader!css-loader?sourceMap!sass-loader?indentedSyntax',
+          scss: 'vue-style-loader!css-loader?sourceMap!sass-loader',
+        }
+  },
+  resolve: {
+    alias: {
+           images:path.resolve(__dirname, 'src/images')
+    }
+  },
   plugins: [
       new HtmlWebpackPlugin({
           title: 'vue-viewer',
