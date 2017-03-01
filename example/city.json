@@ -1,0 +1,86 @@
+{
+    "code": 0,
+    "msg": "成功",
+    "data": {
+        "cityList": [
+            {
+                "city_id": 110100,
+                "city_name": "北京",
+                "province_name": "北京",
+                "province_id": 110000
+            },
+            {
+                "city_id": 110116,
+                "city_name": "怀柔",
+                "province_name": "北京",
+                "province_id": 110000
+            },
+            {
+                "city_id": 110117,
+                "city_name": "平谷",
+                "province_name": "北京",
+                "province_id": 110000
+            },
+            {
+                "city_id": 110228,
+                "city_name": "密云县",
+                "province_name": "北京",
+                "province_id": 110000
+            },
+            {
+                "city_id": 110229,
+                "city_name": "延庆县",
+                "province_name": "北京",
+                "province_id": 110000
+            },
+            {
+                "city_id": 120100,
+                "city_name": "天津",
+                "province_name": "天津",
+                "province_id": 120000
+            },
+            {
+                "city_id": 120115,
+                "city_name": "宝坻",
+                "province_name": "天津",
+                "province_id": 120000
+            },
+            {
+                "city_id": 120221,
+                "city_name": "宁河县",
+                "province_name": "天津",
+                "province_id": 120000
+            },
+            {
+                "city_id": 120225,
+                "city_name": "蓟县",
+                "province_name": "天津",
+                "province_id": 120000
+            },
+            {
+                "city_id": 130100,
+                "city_name": "石家庄",
+                "province_name": "河北",
+                "province_id": 130000
+            },
+            {
+                "city_id": 130123,
+                "city_name": "正定县",
+                "province_name": "河北",
+                "province_id": 130000
+            },
+            {
+                "city_id": 130129,
+                "city_name": "赞皇",
+                "province_name": "河北",
+                "province_id": 130000
+            },
+            {
+                "city_id": 130131,
+                "city_name": "平山",
+                "province_name": "河北",
+                "province_id": 130000
+            }
+        ]
+    }
+}
