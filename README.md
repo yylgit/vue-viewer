@@ -58,4 +58,4 @@ props: {
 
 ```
 # ScreenShot
-![image description](http://p1.meituan.net/shangchao/eb1892b6ce5f4f1c9b49a3eeb42ecbea.jpg)
+![image description](http://p0.meituan.net/600.600/shaitu/334396155b7323d7a1b67a9e2c9a98ba1929216.gif)
