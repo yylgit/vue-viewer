@@ -1,31 +1,38 @@
 <template>
   <div  v-show="value">
-    <div @click="bgClick" class="viewer-bg"> 
+    <div @click.stop="bgClick" class="viewer-bg"  v-bind:class="{'fade-in': fadeIn}"> 
     </div>
-    <img ref="targetImage" class="target-image" @load="imageLoaded"  v-bind:style="imageStyle" :src="src" alt="">
+    <img  ref="targetImage" 
+      class="target-image" 
+      @load="imageLoaded"  
+      v-bind:style="imageStyle"
+      v-bind:class="{'fade-in': fadeIn,'image-transition': !isMove}" 
+      :src="src" 
+      alt="">
     <div class="toolbar">
-      <span class="icon" @click="zoomIn">
+      <span class="icon" @click.stop="zoomIn">
         <i class="zoom-in"></i>
       </span>
-      <span class="icon"  @click="zoomOut">
+      <span class="icon"  @click.stop="zoomOut">
         <i class="zoom-out"></i>
       </span>
-      <span class="icon" @click="oneToOne">
+      <span class="icon" @click.stop="oneToOne">
         <i class="one-to-one"></i>
       </span>
       <span class="icon">
-        <i class="reset" @click="resetImage"></i>
+        <i class="reset" @click.stop="resetImage"></i>
       </span>
-      <span class="icon" @click="RotateLeft">
+      <span class="icon" @click.stop="RotateLeft">
         <i class="rotate-left"></i>
       </span>
-      <span class="icon" @click="RotateRight">
+      <span class="icon" @click.stop="RotateRight">
         <i class="rotate-right"></i>
       </span>
     </div>
-    <div class="viewer-tooltip" v-bind:class="{'tip-show': showTip}">
-    {{parseInt(this.percent * 100)}}%
+    <div class="tooltip" v-bind:class="{'tip-show': showTip}">
+      {{parseInt(this.percent * 100)}}%
     </div>
+    
   </div>
 </template>
 <script>
@@ -56,23 +63,44 @@
         showTip: false,
         top: 0,
         left: 0,
-        canDrag: false,  //是否可以拖动，点击图片时可以拖动
         reset: false,  //是否是重置，解决点击重置时watch中的设置top和left
         pageX: -1,
-        pageX: -1
+        pageY: -1,
+        fadeIn: false,
+        isMove: false  //移动的时候不要transition
       }
     },
     computed: {
       imageStyle: function () {
+        
         return {
           width: this.width === 'auto' ? 'auto' : this.width+'px',
           height: this.height === 'auto' ? 'auto' : this.height+ 'px',
           transform: `rotate(${this.rotate}deg)`,
-          transition: `all 0.5s ease`,
           top: this.top + 'px',
           left: this.left + 'px'
         }
       }
+    },
+    watch: {
+      value: function () {
+        setTimeout(()=>{
+          this.fadeIn = this.value
+        },100)
+      }
+    },
+    mounted () {
+        this.resize = ()=>{
+          this.resetImage(); 
+        }
+        this.addHandler(window,'resize',this.resize)
+        this.bindDrag();
+    },
+    destroyed () {
+      this.removeHandler(window,'resize',this.resize)
+      this.removeHandler(document,'mousedown',this.mousedown)
+      this.removeHandler(document,'mouseup',this.mouseup)
+      
     },
     methods: {
       //计算位置和大小
@@ -103,53 +131,67 @@
         this.calposition();
       },
       imageLoaded () {
-        let targetImage = this.$refs.targetImage;
-        this.width = this.initWidth =  targetImage.width;
-        this.height = this.initHeight = targetImage.height;
-
-        window.onresize = () => {  
-           this.resetImage();  
-        }  
-        this.resetImage();  
-        this.bindDrag();
+          //解决在ie10和ie9下有些时候通过 this.$refs.targetImage获取不到width和height的问题
+          let img = document.createElement('img');
+          img.src = this.src;
+          this.width = this.initWidth =  img.width;
+          this.height = this.initHeight = img.height;
+          this.resetImage();  
+      
+      },
+      removeHandler: function (element, type, handler) {
+          if (element.removeEventListener) {
+              element.removeEventListener(type, handler, false);   //标准
+          } else if (element.detachEvent) {
+              element.detachEvent("on" + type, handler);           //IE
+          } else {
+              element["on" + type] = null;                         //DOM0
+          }
+      },
+      addHandler: function (element, type, handler) {
+        if (element.addEventListener) {                         //标准绑定
+            element.addEventListener(type, handler, false);
+        } else if (element.attachEvent) {                       //IE绑定
+            element.attachEvent("on" + type, handler);
+        } else {
+            element["on" + type] = handler;                     //DOM0级绑定
+        }
       },
       bindDrag () {
-        document.onmousedown = (e)=>{
+        this.mousedown = (e)=>{
+          //记录鼠标按下的位置，解决每次移动的闪动
+          this.pageX = e.pageX;
+          this.pageY = e.pageY;
+          this.isMove = true;
           e.preventDefault(); //禁止图片的拖动，会不触发mouseup
           var evtobj = window.event || e
           let targetobj = evtobj.srcElement || e.target
           let targetImage = this.$refs.targetImage;
           if(targetobj === targetImage) {
-            this.canDrag = true;
-          }  
+            this.addHandler(document,'mousemove',this.mousemove)
+          } 
         }
-        document.onmouseup = (e)=>{
-          this.canDrag = false;
+        this.mouseup = ()=>{
+          this.isMove = false;
+          this.removeHandler(document,'mousemove',this.mousemove)
         }
-        document.onmousemove = (e)=>{
-        
-          if(this.canDrag) {
+        this.mousemove = (e)=>{
             var event = e
-            if(event.movementY && event.movementX) {
-              this.top += event.movementY;
-              this.left += event.movementX;
-            } else {
-              let oldPageX = this.pageX;
-              let oldPageY = this.pageY;
-              if(oldPageX !== -1 && oldPageY !== -1) {
-                let moveX = event.pageX - this.pageX;
-                let moveY = event.pageY - this.pageY;
-                this.left += moveX;
-                this.top += moveY;
-              }
-              this.pageX = event.pageX;
-              this.pageY = event.pageY;
+            let oldPageX = this.pageX;
+            let oldPageY = this.pageY;
+            if(oldPageX !== -1 && oldPageY !== -1) {
+            
+              let moveX = event.pageX - this.pageX;
+              let moveY = event.pageY - this.pageY;
+              this.left += moveX;
+              this.top += moveY;
             }
-            
-            
-          }
-           
+            this.pageX = event.pageX;
+            this.pageY = event.pageY;
         }
+        this.addHandler(document,'mousedown',this.mousedown)
+        this.addHandler(document,'mouseup',this.mouseup)
+        
       },
       getWindowSize () {
         let winWidth;
@@ -232,6 +274,14 @@
   }
 </script>
 <style lang="scss" scoped>
+    .wrapper {
+      opacity: 0;
+      transition: all 0.5s ease;
+      &.fade-in {
+        opacity: 1;
+      }
+    }
+    
     .viewer-bg {
       top: 0;
       right: 0;
@@ -240,19 +290,31 @@
       position: fixed;
       overflow: auto;
       margin: 0;
-      background-color: rgba(0,0,0,0.2);
-      z-index: 1000;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 10000;
+      opacity: 0;
+      transition: all 0.5s ease;
+      &.fade-in {
+        opacity: 1;
+      }
     }
     .target-image {
-      z-index: 1001;
+      z-index: 10001;
       position: fixed;
       cursor: move;
       cursor: -webkit-grab;
       cursor: grab;
+      opacity: 0;
+      &.fade-in {
+        opacity: 1;
+      }
+      &.image-transition {
+        transition: all 0.3s ease;
+      }
     }
     .toolbar {
        position: fixed;
-       z-index: 1002;
+       z-index: 10002;
        bottom: 20px;
        left: 0px;
        right: 0px;
@@ -296,7 +358,7 @@
        
     }
     
-    .viewer-tooltip {
+    .tooltip {
         background-color: rgba(0, 0, 0, .8);
         border-radius: 10px;
         color: #fff;
@@ -310,7 +372,7 @@
         text-align: center;
         top: 50%;
         width: 50px;
-        z-index: 1003;
+        z-index: 10003;
         opacity: 0;
         transition: all 0.5s ease;
         &.tip-show {
