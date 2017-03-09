@@ -80,7 +80,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  /* script */
 	  __webpack_require__(9),
 	  /* template */
-	  __webpack_require__(29),
+	  __webpack_require__(10),
 	  /* scopeId */
 	  "data-v-d773db96",
 	  /* cssModules */
@@ -141,7 +141,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, "\n.viewer-bg[data-v-d773db96] {\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  position: fixed;\n  overflow: auto;\n  margin: 0;\n  background-color: rgba(0, 0, 0, 0.2);\n  z-index: 1000;\n}\n.target-image[data-v-d773db96] {\n  z-index: 1001;\n  position: fixed;\n  cursor: move;\n  cursor: -webkit-grab;\n  cursor: grab;\n}\n.toolbar[data-v-d773db96] {\n  position: fixed;\n  z-index: 1002;\n  bottom: 20px;\n  left: 0px;\n  right: 0px;\n  text-align: center;\n}\n.toolbar .icon[data-v-d773db96] {\n    cursor: pointer;\n    display: inline-block;\n    background-color: rgba(0, 0, 0, 0.5);\n    border-radius: 50%;\n    cursor: pointer;\n    height: 24px;\n    overflow: hidden;\n    width: 24px;\n}\n.toolbar .icon i[data-v-d773db96] {\n      background-image: url(" + __webpack_require__(5) + ");\n      background-repeat: no-repeat;\n      display: inline-block;\n      height: 20px;\n      width: 20px;\n      margin: 2px;\n}\n.toolbar .icon i.zoom-in[data-v-d773db96] {\n        background-position: 0 0;\n}\n.toolbar .icon i.zoom-out[data-v-d773db96] {\n        background-position: -20px 0;\n}\n.toolbar .icon i.one-to-one[data-v-d773db96] {\n        background-position: -40px 0;\n}\n.toolbar .icon i.reset[data-v-d773db96] {\n        background-position: -60px 0;\n}\n.toolbar .icon i.rotate-left[data-v-d773db96] {\n        background-position: -140px 0;\n}\n.toolbar .icon i.rotate-right[data-v-d773db96] {\n        background-position: -160px 0;\n}\n.viewer-tooltip[data-v-d773db96] {\n  background-color: rgba(0, 0, 0, 0.8);\n  border-radius: 10px;\n  color: #fff;\n  font-size: 12px;\n  height: 20px;\n  left: 50%;\n  line-height: 20px;\n  margin-left: -25px;\n  margin-top: -10px;\n  position: fixed;\n  text-align: center;\n  top: 50%;\n  width: 50px;\n  z-index: 1003;\n  opacity: 0;\n  transition: all 0.5s ease;\n}\n.viewer-tooltip.tip-show[data-v-d773db96] {\n    opacity: 1;\n}\n", "", {"version":3,"sources":["/./src/Viewer.vue"],"names":[],"mappings":";AACA;EACE,OAAO;EACP,SAAS;EACT,UAAU;EACV,QAAQ;EACR,gBAAgB;EAChB,eAAe;EACf,UAAU;EACV,qCAAqC;EACrC,cAAc;CACf;AACD;EACE,cAAc;EACd,gBAAgB;EAChB,aAAa;EACb,qBAAqB;EACrB,aAAa;CACd;AACD;EACE,gBAAgB;EAChB,cAAc;EACd,aAAa;EACb,UAAU;EACV,WAAW;EACX,mBAAmB;CACpB;AACD;IACI,gBAAgB;IAChB,sBAAsB;IACtB,qCAAqC;IACrC,mBAAmB;IACnB,gBAAgB;IAChB,aAAa;IACb,iBAAiB;IACjB,YAAY;CACf;AACD;MACM,gDAAkD;MAClD,6BAA6B;MAC7B,sBAAsB;MACtB,aAAa;MACb,YAAY;MACZ,YAAY;CACjB;AACD;QACQ,yBAAyB;CAChC;AACD;QACQ,6BAA6B;CACpC;AACD;QACQ,6BAA6B;CACpC;AACD;QACQ,6BAA6B;CACpC;AACD;QACQ,8BAA8B;CACrC;AACD;QACQ,8BAA8B;CACrC;AACD;EACE,qCAAqC;EACrC,oBAAoB;EACpB,YAAY;EACZ,gBAAgB;EAChB,aAAa;EACb,UAAU;EACV,kBAAkB;EAClB,mBAAmB;EACnB,kBAAkB;EAClB,gBAAgB;EAChB,mBAAmB;EACnB,SAAS;EACT,YAAY;EACZ,cAAc;EACd,WAAW;EACX,0BAA0B;CAC3B;AACD;IACI,WAAW;CACd","file":"Viewer.vue","sourcesContent":["\n.viewer-bg[data-v-d773db96] {\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  position: fixed;\n  overflow: auto;\n  margin: 0;\n  background-color: rgba(0, 0, 0, 0.2);\n  z-index: 1000;\n}\n.target-image[data-v-d773db96] {\n  z-index: 1001;\n  position: fixed;\n  cursor: move;\n  cursor: -webkit-grab;\n  cursor: grab;\n}\n.toolbar[data-v-d773db96] {\n  position: fixed;\n  z-index: 1002;\n  bottom: 20px;\n  left: 0px;\n  right: 0px;\n  text-align: center;\n}\n.toolbar .icon[data-v-d773db96] {\n    cursor: pointer;\n    display: inline-block;\n    background-color: rgba(0, 0, 0, 0.5);\n    border-radius: 50%;\n    cursor: pointer;\n    height: 24px;\n    overflow: hidden;\n    width: 24px;\n}\n.toolbar .icon i[data-v-d773db96] {\n      background-image: url(\"~images/viewer_icons.png\");\n      background-repeat: no-repeat;\n      display: inline-block;\n      height: 20px;\n      width: 20px;\n      margin: 2px;\n}\n.toolbar .icon i.zoom-in[data-v-d773db96] {\n        background-position: 0 0;\n}\n.toolbar .icon i.zoom-out[data-v-d773db96] {\n        background-position: -20px 0;\n}\n.toolbar .icon i.one-to-one[data-v-d773db96] {\n        background-position: -40px 0;\n}\n.toolbar .icon i.reset[data-v-d773db96] {\n        background-position: -60px 0;\n}\n.toolbar .icon i.rotate-left[data-v-d773db96] {\n        background-position: -140px 0;\n}\n.toolbar .icon i.rotate-right[data-v-d773db96] {\n        background-position: -160px 0;\n}\n.viewer-tooltip[data-v-d773db96] {\n  background-color: rgba(0, 0, 0, 0.8);\n  border-radius: 10px;\n  color: #fff;\n  font-size: 12px;\n  height: 20px;\n  left: 50%;\n  line-height: 20px;\n  margin-left: -25px;\n  margin-top: -10px;\n  position: fixed;\n  text-align: center;\n  top: 50%;\n  width: 50px;\n  z-index: 1003;\n  opacity: 0;\n  transition: all 0.5s ease;\n}\n.viewer-tooltip.tip-show[data-v-d773db96] {\n    opacity: 1;\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.wrapper[data-v-d773db96] {\n  opacity: 0;\n  transition: all 0.5s ease;\n}\n.wrapper.fade-in[data-v-d773db96] {\n    opacity: 1;\n}\n.viewer-bg[data-v-d773db96] {\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  position: fixed;\n  overflow: auto;\n  margin: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 10000;\n  opacity: 0;\n  transition: all 0.5s ease;\n}\n.viewer-bg.fade-in[data-v-d773db96] {\n    opacity: 1;\n}\n.target-image[data-v-d773db96] {\n  z-index: 10001;\n  position: fixed;\n  cursor: move;\n  cursor: -webkit-grab;\n  cursor: grab;\n  opacity: 0;\n}\n.target-image.fade-in[data-v-d773db96] {\n    opacity: 1;\n}\n.target-image.image-transition[data-v-d773db96] {\n    transition: all 0.3s ease;\n}\n.toolbar[data-v-d773db96] {\n  position: fixed;\n  z-index: 10002;\n  bottom: 20px;\n  left: 0px;\n  right: 0px;\n  text-align: center;\n}\n.toolbar .icon[data-v-d773db96] {\n    cursor: pointer;\n    display: inline-block;\n    background-color: rgba(0, 0, 0, 0.5);\n    border-radius: 50%;\n    cursor: pointer;\n    height: 24px;\n    overflow: hidden;\n    width: 24px;\n}\n.toolbar .icon i[data-v-d773db96] {\n      background-image: url(" + __webpack_require__(5) + ");\n      background-repeat: no-repeat;\n      display: inline-block;\n      height: 20px;\n      width: 20px;\n      margin: 2px;\n}\n.toolbar .icon i.zoom-in[data-v-d773db96] {\n        background-position: 0 0;\n}\n.toolbar .icon i.zoom-out[data-v-d773db96] {\n        background-position: -20px 0;\n}\n.toolbar .icon i.one-to-one[data-v-d773db96] {\n        background-position: -40px 0;\n}\n.toolbar .icon i.reset[data-v-d773db96] {\n        background-position: -60px 0;\n}\n.toolbar .icon i.rotate-left[data-v-d773db96] {\n        background-position: -140px 0;\n}\n.toolbar .icon i.rotate-right[data-v-d773db96] {\n        background-position: -160px 0;\n}\n.tooltip[data-v-d773db96] {\n  background-color: rgba(0, 0, 0, 0.8);\n  border-radius: 10px;\n  color: #fff;\n  font-size: 12px;\n  height: 20px;\n  left: 50%;\n  line-height: 20px;\n  margin-left: -25px;\n  margin-top: -10px;\n  position: fixed;\n  text-align: center;\n  top: 50%;\n  width: 50px;\n  z-index: 10003;\n  opacity: 0;\n  transition: all 0.5s ease;\n}\n.tooltip.tip-show[data-v-d773db96] {\n    opacity: 1;\n}\n", "", {"version":3,"sources":["/./src/Viewer.vue"],"names":[],"mappings":";AACA;EACE,WAAW;EACX,0BAA0B;CAC3B;AACD;IACI,WAAW;CACd;AACD;EACE,OAAO;EACP,SAAS;EACT,UAAU;EACV,QAAQ;EACR,gBAAgB;EAChB,eAAe;EACf,UAAU;EACV,qCAAqC;EACrC,eAAe;EACf,WAAW;EACX,0BAA0B;CAC3B;AACD;IACI,WAAW;CACd;AACD;EACE,eAAe;EACf,gBAAgB;EAChB,aAAa;EACb,qBAAqB;EACrB,aAAa;EACb,WAAW;CACZ;AACD;IACI,WAAW;CACd;AACD;IACI,0BAA0B;CAC7B;AACD;EACE,gBAAgB;EAChB,eAAe;EACf,aAAa;EACb,UAAU;EACV,WAAW;EACX,mBAAmB;CACpB;AACD;IACI,gBAAgB;IAChB,sBAAsB;IACtB,qCAAqC;IACrC,mBAAmB;IACnB,gBAAgB;IAChB,aAAa;IACb,iBAAiB;IACjB,YAAY;CACf;AACD;MACM,gDAAkD;MAClD,6BAA6B;MAC7B,sBAAsB;MACtB,aAAa;MACb,YAAY;MACZ,YAAY;CACjB;AACD;QACQ,yBAAyB;CAChC;AACD;QACQ,6BAA6B;CACpC;AACD;QACQ,6BAA6B;CACpC;AACD;QACQ,6BAA6B;CACpC;AACD;QACQ,8BAA8B;CACrC;AACD;QACQ,8BAA8B;CACrC;AACD;EACE,qCAAqC;EACrC,oBAAoB;EACpB,YAAY;EACZ,gBAAgB;EAChB,aAAa;EACb,UAAU;EACV,kBAAkB;EAClB,mBAAmB;EACnB,kBAAkB;EAClB,gBAAgB;EAChB,mBAAmB;EACnB,SAAS;EACT,YAAY;EACZ,eAAe;EACf,WAAW;EACX,0BAA0B;CAC3B;AACD;IACI,WAAW;CACd","file":"Viewer.vue","sourcesContent":["\n.wrapper[data-v-d773db96] {\n  opacity: 0;\n  transition: all 0.5s ease;\n}\n.wrapper.fade-in[data-v-d773db96] {\n    opacity: 1;\n}\n.viewer-bg[data-v-d773db96] {\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  position: fixed;\n  overflow: auto;\n  margin: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 10000;\n  opacity: 0;\n  transition: all 0.5s ease;\n}\n.viewer-bg.fade-in[data-v-d773db96] {\n    opacity: 1;\n}\n.target-image[data-v-d773db96] {\n  z-index: 10001;\n  position: fixed;\n  cursor: move;\n  cursor: -webkit-grab;\n  cursor: grab;\n  opacity: 0;\n}\n.target-image.fade-in[data-v-d773db96] {\n    opacity: 1;\n}\n.target-image.image-transition[data-v-d773db96] {\n    transition: all 0.3s ease;\n}\n.toolbar[data-v-d773db96] {\n  position: fixed;\n  z-index: 10002;\n  bottom: 20px;\n  left: 0px;\n  right: 0px;\n  text-align: center;\n}\n.toolbar .icon[data-v-d773db96] {\n    cursor: pointer;\n    display: inline-block;\n    background-color: rgba(0, 0, 0, 0.5);\n    border-radius: 50%;\n    cursor: pointer;\n    height: 24px;\n    overflow: hidden;\n    width: 24px;\n}\n.toolbar .icon i[data-v-d773db96] {\n      background-image: url(\"~images/viewer_icons.png\");\n      background-repeat: no-repeat;\n      display: inline-block;\n      height: 20px;\n      width: 20px;\n      margin: 2px;\n}\n.toolbar .icon i.zoom-in[data-v-d773db96] {\n        background-position: 0 0;\n}\n.toolbar .icon i.zoom-out[data-v-d773db96] {\n        background-position: -20px 0;\n}\n.toolbar .icon i.one-to-one[data-v-d773db96] {\n        background-position: -40px 0;\n}\n.toolbar .icon i.reset[data-v-d773db96] {\n        background-position: -60px 0;\n}\n.toolbar .icon i.rotate-left[data-v-d773db96] {\n        background-position: -140px 0;\n}\n.toolbar .icon i.rotate-right[data-v-d773db96] {\n        background-position: -160px 0;\n}\n.tooltip[data-v-d773db96] {\n  background-color: rgba(0, 0, 0, 0.8);\n  border-radius: 10px;\n  color: #fff;\n  font-size: 12px;\n  height: 20px;\n  left: 50%;\n  line-height: 20px;\n  margin-left: -25px;\n  margin-top: -10px;\n  position: fixed;\n  text-align: center;\n  top: 50%;\n  width: 50px;\n  z-index: 10003;\n  opacity: 0;\n  transition: all 0.5s ease;\n}\n.tooltip.tip-show[data-v-d773db96] {\n    opacity: 1;\n}\n"],"sourceRoot":"webpack://"}]);
 
 	// exports
 
@@ -532,20 +532,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 9 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
-	var _defineProperty2 = __webpack_require__(10);
-
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//
 	//
 	//
@@ -592,7 +592,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  data: function data() {
-	    return (0, _defineProperty3.default)({
+	    return {
 	      rotate: 0,
 	      width: 'auto',
 	      height: 'auto',
@@ -604,23 +604,49 @@ return /******/ (function(modules) { // webpackBootstrap
 	      showTip: false,
 	      top: 0,
 	      left: 0,
-	      canDrag: false, //是否可以拖动，点击图片时可以拖动
 	      reset: false, //是否是重置，解决点击重置时watch中的设置top和left
-	      pageX: -1
-	    }, 'pageX', -1);
+	      pageX: -1,
+	      pageY: -1,
+	      fadeIn: false,
+	      isMove: false //移动的时候不要transition
+	    };
 	  },
 	  computed: {
 	    imageStyle: function imageStyle() {
+
 	      return {
 	        width: this.width === 'auto' ? 'auto' : this.width + 'px',
 	        height: this.height === 'auto' ? 'auto' : this.height + 'px',
 	        transform: 'rotate(' + this.rotate + 'deg)',
-	        transition: 'all 0.5s ease',
 	        top: this.top + 'px',
 	        left: this.left + 'px'
 	      };
 	    }
 	  },
+	  watch: {
+	    value: function value() {
+	      var _this = this;
+
+	      setTimeout(function () {
+	        _this.fadeIn = _this.value;
+	      }, 100);
+	    }
+	  },
+	  mounted: function mounted() {
+	    var _this2 = this;
+
+	    this.resize = function () {
+	      _this2.resetImage();
+	    };
+	    this.addHandler(window, 'resize', this.resize);
+	    this.bindDrag();
+	  },
+	  destroyed: function destroyed() {
+	    this.removeHandler(window, 'resize', this.resize);
+	    this.removeHandler(document, 'mousedown', this.mousedown);
+	    this.removeHandler(document, 'mouseup', this.mouseup);
+	  },
+
 	  methods: {
 	    //计算位置和大小
 	    calposition: function calposition(reset) {
@@ -640,11 +666,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.Tip();
 	    },
 	    Tip: function Tip() {
-	      var _this = this;
+	      var _this3 = this;
 
 	      this.showTip = true;
 	      setTimeout(function () {
-	        _this.showTip = false;
+	        _this3.showTip = false;
 	      }, 1000);
 	    },
 	    oneToOne: function oneToOne() {
@@ -652,54 +678,70 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.calposition();
 	    },
 	    imageLoaded: function imageLoaded() {
-	      var _this2 = this;
-
-	      var targetImage = this.$refs.targetImage;
-	      this.width = this.initWidth = targetImage.width;
-	      this.height = this.initHeight = targetImage.height;
-
-	      window.onresize = function () {
-	        _this2.resetImage();
-	      };
+	      //解决在ie10和ie9下有些时候通过 this.$refs.targetImage获取不到width和height的问题
+	      var img = document.createElement('img');
+	      img.src = this.src;
+	      this.width = this.initWidth = img.width;
+	      this.height = this.initHeight = img.height;
 	      this.resetImage();
-	      this.bindDrag();
+	    },
+
+	    removeHandler: function removeHandler(element, type, handler) {
+	      if (element.removeEventListener) {
+	        element.removeEventListener(type, handler, false); //标准
+	      } else if (element.detachEvent) {
+	        element.detachEvent("on" + type, handler); //IE
+	      } else {
+	        element["on" + type] = null; //DOM0
+	      }
+	    },
+	    addHandler: function addHandler(element, type, handler) {
+	      if (element.addEventListener) {
+	        //标准绑定
+	        element.addEventListener(type, handler, false);
+	      } else if (element.attachEvent) {
+	        //IE绑定
+	        element.attachEvent("on" + type, handler);
+	      } else {
+	        element["on" + type] = handler; //DOM0级绑定
+	      }
 	    },
 	    bindDrag: function bindDrag() {
-	      var _this3 = this;
+	      var _this4 = this;
 
-	      document.onmousedown = function (e) {
+	      this.mousedown = function (e) {
+	        //记录鼠标按下的位置，解决每次移动的闪动
+	        _this4.pageX = e.pageX;
+	        _this4.pageY = e.pageY;
+	        _this4.isMove = true;
 	        e.preventDefault(); //禁止图片的拖动，会不触发mouseup
 	        var evtobj = window.event || e;
 	        var targetobj = evtobj.srcElement || e.target;
-	        var targetImage = _this3.$refs.targetImage;
+	        var targetImage = _this4.$refs.targetImage;
 	        if (targetobj === targetImage) {
-	          _this3.canDrag = true;
+	          _this4.addHandler(document, 'mousemove', _this4.mousemove);
 	        }
 	      };
-	      document.onmouseup = function (e) {
-	        _this3.canDrag = false;
+	      this.mouseup = function () {
+	        _this4.isMove = false;
+	        _this4.removeHandler(document, 'mousemove', _this4.mousemove);
 	      };
-	      document.onmousemove = function (e) {
+	      this.mousemove = function (e) {
+	        var event = e;
+	        var oldPageX = _this4.pageX;
+	        var oldPageY = _this4.pageY;
+	        if (oldPageX !== -1 && oldPageY !== -1) {
 
-	        if (_this3.canDrag) {
-	          var event = e;
-	          if (event.movementY && event.movementX) {
-	            _this3.top += event.movementY;
-	            _this3.left += event.movementX;
-	          } else {
-	            var oldPageX = _this3.pageX;
-	            var oldPageY = _this3.pageY;
-	            if (oldPageX !== -1 && oldPageY !== -1) {
-	              var moveX = event.pageX - _this3.pageX;
-	              var moveY = event.pageY - _this3.pageY;
-	              _this3.left += moveX;
-	              _this3.top += moveY;
-	            }
-	            _this3.pageX = event.pageX;
-	            _this3.pageY = event.pageY;
-	          }
+	          var moveX = event.pageX - _this4.pageX;
+	          var moveY = event.pageY - _this4.pageY;
+	          _this4.left += moveX;
+	          _this4.top += moveY;
 	        }
+	        _this4.pageX = event.pageX;
+	        _this4.pageY = event.pageY;
 	      };
+	      this.addHandler(document, 'mousedown', this.mousedown);
+	      this.addHandler(document, 'mouseup', this.mouseup);
 	    },
 	    getWindowSize: function getWindowSize() {
 	      var winWidth = void 0;
@@ -780,298 +822,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-
-	exports.__esModule = true;
-
-	var _defineProperty = __webpack_require__(11);
-
-	var _defineProperty2 = _interopRequireDefault(_defineProperty);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = function (obj, key, value) {
-	  if (key in obj) {
-	    (0, _defineProperty2.default)(obj, key, {
-	      value: value,
-	      enumerable: true,
-	      configurable: true,
-	      writable: true
-	    });
-	  } else {
-	    obj[key] = value;
-	  }
-
-	  return obj;
-	};
-
-/***/ },
-/* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(12), __esModule: true };
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(13);
-	var $Object = __webpack_require__(16).Object;
-	module.exports = function defineProperty(it, key, desc){
-	  return $Object.defineProperty(it, key, desc);
-	};
-
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var $export = __webpack_require__(14);
-	// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-	$export($export.S + $export.F * !__webpack_require__(24), 'Object', {defineProperty: __webpack_require__(20).f});
-
-/***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var global    = __webpack_require__(15)
-	  , core      = __webpack_require__(16)
-	  , ctx       = __webpack_require__(17)
-	  , hide      = __webpack_require__(19)
-	  , PROTOTYPE = 'prototype';
-
-	var $export = function(type, name, source){
-	  var IS_FORCED = type & $export.F
-	    , IS_GLOBAL = type & $export.G
-	    , IS_STATIC = type & $export.S
-	    , IS_PROTO  = type & $export.P
-	    , IS_BIND   = type & $export.B
-	    , IS_WRAP   = type & $export.W
-	    , exports   = IS_GLOBAL ? core : core[name] || (core[name] = {})
-	    , expProto  = exports[PROTOTYPE]
-	    , target    = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE]
-	    , key, own, out;
-	  if(IS_GLOBAL)source = name;
-	  for(key in source){
-	    // contains in native
-	    own = !IS_FORCED && target && target[key] !== undefined;
-	    if(own && key in exports)continue;
-	    // export native or passed
-	    out = own ? target[key] : source[key];
-	    // prevent global pollution for namespaces
-	    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
-	    // bind timers to global for call from export context
-	    : IS_BIND && own ? ctx(out, global)
-	    // wrap global constructors for prevent change them in library
-	    : IS_WRAP && target[key] == out ? (function(C){
-	      var F = function(a, b, c){
-	        if(this instanceof C){
-	          switch(arguments.length){
-	            case 0: return new C;
-	            case 1: return new C(a);
-	            case 2: return new C(a, b);
-	          } return new C(a, b, c);
-	        } return C.apply(this, arguments);
-	      };
-	      F[PROTOTYPE] = C[PROTOTYPE];
-	      return F;
-	    // make static versions for prototype methods
-	    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
-	    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
-	    if(IS_PROTO){
-	      (exports.virtual || (exports.virtual = {}))[key] = out;
-	      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
-	      if(type & $export.R && expProto && !expProto[key])hide(expProto, key, out);
-	    }
-	  }
-	};
-	// type bitmap
-	$export.F = 1;   // forced
-	$export.G = 2;   // global
-	$export.S = 4;   // static
-	$export.P = 8;   // proto
-	$export.B = 16;  // bind
-	$export.W = 32;  // wrap
-	$export.U = 64;  // safe
-	$export.R = 128; // real proto method for `library` 
-	module.exports = $export;
-
-/***/ },
-/* 15 */
-/***/ function(module, exports) {
-
-	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-	var global = module.exports = typeof window != 'undefined' && window.Math == Math
-	  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
-	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
-
-/***/ },
-/* 16 */
-/***/ function(module, exports) {
-
-	var core = module.exports = {version: '2.4.0'};
-	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-
-/***/ },
-/* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// optional / simple context binding
-	var aFunction = __webpack_require__(18);
-	module.exports = function(fn, that, length){
-	  aFunction(fn);
-	  if(that === undefined)return fn;
-	  switch(length){
-	    case 1: return function(a){
-	      return fn.call(that, a);
-	    };
-	    case 2: return function(a, b){
-	      return fn.call(that, a, b);
-	    };
-	    case 3: return function(a, b, c){
-	      return fn.call(that, a, b, c);
-	    };
-	  }
-	  return function(/* ...args */){
-	    return fn.apply(that, arguments);
-	  };
-	};
-
-/***/ },
-/* 18 */
-/***/ function(module, exports) {
-
-	module.exports = function(it){
-	  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
-	  return it;
-	};
-
-/***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var dP         = __webpack_require__(20)
-	  , createDesc = __webpack_require__(28);
-	module.exports = __webpack_require__(24) ? function(object, key, value){
-	  return dP.f(object, key, createDesc(1, value));
-	} : function(object, key, value){
-	  object[key] = value;
-	  return object;
-	};
-
-/***/ },
-/* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var anObject       = __webpack_require__(21)
-	  , IE8_DOM_DEFINE = __webpack_require__(23)
-	  , toPrimitive    = __webpack_require__(27)
-	  , dP             = Object.defineProperty;
-
-	exports.f = __webpack_require__(24) ? Object.defineProperty : function defineProperty(O, P, Attributes){
-	  anObject(O);
-	  P = toPrimitive(P, true);
-	  anObject(Attributes);
-	  if(IE8_DOM_DEFINE)try {
-	    return dP(O, P, Attributes);
-	  } catch(e){ /* empty */ }
-	  if('get' in Attributes || 'set' in Attributes)throw TypeError('Accessors not supported!');
-	  if('value' in Attributes)O[P] = Attributes.value;
-	  return O;
-	};
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var isObject = __webpack_require__(22);
-	module.exports = function(it){
-	  if(!isObject(it))throw TypeError(it + ' is not an object!');
-	  return it;
-	};
-
-/***/ },
-/* 22 */
-/***/ function(module, exports) {
-
-	module.exports = function(it){
-	  return typeof it === 'object' ? it !== null : typeof it === 'function';
-	};
-
-/***/ },
-/* 23 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = !__webpack_require__(24) && !__webpack_require__(25)(function(){
-	  return Object.defineProperty(__webpack_require__(26)('div'), 'a', {get: function(){ return 7; }}).a != 7;
-	});
-
-/***/ },
-/* 24 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// Thank's IE8 for his funny defineProperty
-	module.exports = !__webpack_require__(25)(function(){
-	  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
-	});
-
-/***/ },
-/* 25 */
-/***/ function(module, exports) {
-
-	module.exports = function(exec){
-	  try {
-	    return !!exec();
-	  } catch(e){
-	    return true;
-	  }
-	};
-
-/***/ },
-/* 26 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var isObject = __webpack_require__(22)
-	  , document = __webpack_require__(15).document
-	  // in old IE typeof document.createElement is 'object'
-	  , is = isObject(document) && isObject(document.createElement);
-	module.exports = function(it){
-	  return is ? document.createElement(it) : {};
-	};
-
-/***/ },
-/* 27 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// 7.1.1 ToPrimitive(input [, PreferredType])
-	var isObject = __webpack_require__(22);
-	// instead of the ES6 spec version, we didn't implement @@toPrimitive case
-	// and the second argument - flag - preferred type is a string
-	module.exports = function(it, S){
-	  if(!isObject(it))return it;
-	  var fn, val;
-	  if(S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
-	  if(typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it)))return val;
-	  if(!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
-	  throw TypeError("Can't convert object to primitive value");
-	};
-
-/***/ },
-/* 28 */
-/***/ function(module, exports) {
-
-	module.exports = function(bitmap, value){
-	  return {
-	    enumerable  : !(bitmap & 1),
-	    configurable: !(bitmap & 2),
-	    writable    : !(bitmap & 4),
-	    value       : value
-	  };
-	};
-
-/***/ },
-/* 29 */
-/***/ function(module, exports, __webpack_require__) {
-
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    directives: [{
@@ -1082,12 +832,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]
 	  }, [_c('div', {
 	    staticClass: "viewer-bg",
+	    class: {
+	      'fade-in': _vm.fadeIn
+	    },
 	    on: {
-	      "click": _vm.bgClick
+	      "click": function($event) {
+	        $event.stopPropagation();
+	        _vm.bgClick($event)
+	      }
 	    }
 	  }), _vm._v(" "), _c('img', {
 	    ref: "targetImage",
 	    staticClass: "target-image",
+	    class: {
+	      'fade-in': _vm.fadeIn, 'image-transition': !_vm.isMove
+	    },
 	    style: (_vm.imageStyle),
 	    attrs: {
 	      "src": _vm.src,
@@ -1101,21 +860,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_c('span', {
 	    staticClass: "icon",
 	    on: {
-	      "click": _vm.zoomIn
+	      "click": function($event) {
+	        $event.stopPropagation();
+	        _vm.zoomIn($event)
+	      }
 	    }
 	  }, [_c('i', {
 	    staticClass: "zoom-in"
 	  })]), _vm._v(" "), _c('span', {
 	    staticClass: "icon",
 	    on: {
-	      "click": _vm.zoomOut
+	      "click": function($event) {
+	        $event.stopPropagation();
+	        _vm.zoomOut($event)
+	      }
 	    }
 	  }, [_c('i', {
 	    staticClass: "zoom-out"
 	  })]), _vm._v(" "), _c('span', {
 	    staticClass: "icon",
 	    on: {
-	      "click": _vm.oneToOne
+	      "click": function($event) {
+	        $event.stopPropagation();
+	        _vm.oneToOne($event)
+	      }
 	    }
 	  }, [_c('i', {
 	    staticClass: "one-to-one"
@@ -1124,28 +892,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_c('i', {
 	    staticClass: "reset",
 	    on: {
-	      "click": _vm.resetImage
+	      "click": function($event) {
+	        $event.stopPropagation();
+	        _vm.resetImage($event)
+	      }
 	    }
 	  })]), _vm._v(" "), _c('span', {
 	    staticClass: "icon",
 	    on: {
-	      "click": _vm.RotateLeft
+	      "click": function($event) {
+	        $event.stopPropagation();
+	        _vm.RotateLeft($event)
+	      }
 	    }
 	  }, [_c('i', {
 	    staticClass: "rotate-left"
 	  })]), _vm._v(" "), _c('span', {
 	    staticClass: "icon",
 	    on: {
-	      "click": _vm.RotateRight
+	      "click": function($event) {
+	        $event.stopPropagation();
+	        _vm.RotateRight($event)
+	      }
 	    }
 	  }, [_c('i', {
 	    staticClass: "rotate-right"
 	  })])]), _vm._v(" "), _c('div', {
-	    staticClass: "viewer-tooltip",
+	    staticClass: "tooltip",
 	    class: {
 	      'tip-show': _vm.showTip
 	    }
-	  }, [_vm._v("\n  " + _vm._s(parseInt(this.percent * 100)) + "%\n  ")])])
+	  }, [_vm._v("\n    " + _vm._s(parseInt(this.percent * 100)) + "%\n  ")])])
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 	if (false) {
