@@ -1,35 +1,39 @@
 <template>
   <div  v-show="value">
-    <div @click.stop="bgClick" class="viewer-bg"  v-bind:class="{'fade-in': fadeIn}"> 
+    <div @click.stop="close" class="viewer-bg" :class="{'fade-in': fadeIn}" v-if="hasMask">
     </div>
-    <img  ref="targetImage" 
+    <img ref="targetImage" 
       class="target-image" 
       @load="imageLoaded"  
-      v-bind:style="imageStyle"
-      v-bind:class="{'fade-in': fadeIn,'image-transition': !isMove}" 
-      :src="src" 
+      :style="imageStyle"
+      :class="{'fade-in': fadeIn,'image-transition': !isMove}"
+      :src="src"
+      @contextmenu="openMenu"
       alt="">
     <div class="toolbar">
       <span class="icon" @click.stop="zoomIn">
-        <i class="zoom-in"></i>
+        <i class="zoom-in" title="放大"></i>
       </span>
       <span class="icon"  @click.stop="zoomOut">
-        <i class="zoom-out"></i>
+        <i class="zoom-out" title="缩小"></i>
       </span>
       <span class="icon" @click.stop="oneToOne">
-        <i class="one-to-one"></i>
+        <i class="one-to-one" title="1:1"></i>
       </span>
       <span class="icon">
-        <i class="reset" @click.stop="resetImage"></i>
+        <i class="reset" @click.stop="resetImage" title="复位"></i>
       </span>
-      <span class="icon" @click.stop="RotateLeft">
+      <span class="icon" @click.stop="RotateLeft" title="左转">
         <i class="rotate-left"></i>
       </span>
-      <span class="icon" @click.stop="RotateRight">
+      <span class="icon" @click.stop="RotateRight" title="右转">
         <i class="rotate-right"></i>
       </span>
+      <span class="icon" @click.stop="close" title="关闭">
+        <i class="close"></i>
+      </span>
     </div>
-    <div class="tooltip" v-bind:class="{'tip-show': showTip}">
+    <div class="tooltip" :class="{'tip-show': showTip}">
       {{parseInt(this.percent * 100)}}%
     </div>
     
@@ -37,7 +41,12 @@
 </template>
 <script>
   export default {
+    name: 'viewer',
     props: {
+      hasMask: {
+        type: Boolean,
+        default: true,
+      },
       src: {
         type: String
       },
@@ -48,6 +57,14 @@
       value: {
         type: Boolean,
         default: false
+      },
+      contextMenu: {
+        type: Boolean,
+        default: true
+      },
+      zIndex: {
+        type: String,
+        default: '10001'
       }
     },
     data: function () {
@@ -78,7 +95,8 @@
           height: this.height === 'auto' ? 'auto' : this.height+ 'px',
           transform: `rotate(${this.rotate}deg)`,
           top: this.top + 'px',
-          left: this.left + 'px'
+          left: this.left + 'px',
+          zIndex: this.zIndex,
         }
       }
     },
@@ -103,6 +121,9 @@
       
     },
     methods: {
+      openMenu(e) {
+        if (!this.contextMenu) e.preventDefault();
+      },
       //计算位置和大小
       calposition(reset) {
         let oldwidth = this.width;
@@ -163,11 +184,11 @@
           this.pageX = e.pageX;
           this.pageY = e.pageY;
           this.isMove = true;
-          e.preventDefault(); //禁止图片的拖动，会不触发mouseup
           var evtobj = window.event || e
           let targetobj = evtobj.srcElement || e.target
           let targetImage = this.$refs.targetImage;
           if(targetobj === targetImage) {
+            e.preventDefault(); //禁止图片的拖动，会不触发mouseup
             this.addHandler(document,'mousemove',this.mousemove)
           } 
         }
@@ -217,7 +238,7 @@
         this.winHeight = winHeight;
         this.winWidth = winWidth;
       },
-      bgClick () {
+      close () {
         this.$emit('input',false)
         this.resetImage();
       },
@@ -299,7 +320,6 @@
       }
     }
     .target-image {
-      z-index: 10001;
       position: fixed;
       cursor: move;
       cursor: -webkit-grab;
@@ -352,6 +372,9 @@
             }
             &.rotate-right{
               background-position: -160px 0;
+            }
+            &.close{
+              background-position: -260px 0;
             }
           }
        }
