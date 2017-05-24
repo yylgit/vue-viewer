@@ -1,6 +1,6 @@
 {
   "name": "vue-viewer",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "a simple component for preview image",
   "main": "dist/vue-viewer.js",
   "repository": {
