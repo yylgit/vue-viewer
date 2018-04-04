@@ -163,7 +163,10 @@
           this.pageX = e.pageX;
           this.pageY = e.pageY;
           this.isMove = true;
-          e.preventDefault(); //禁止图片的拖动，会不触发mouseup
+          // 只有在预览图片的事件中才做这个处理,否则会导致页面其他文本框无法点击获得焦点.
+          if (e.target.className.indexOf("target-image") >= 0) {
+            e.preventDefault(); // 禁止图片的拖动，会不触发mouseup
+          }
           var evtobj = window.event || e
           let targetobj = evtobj.srcElement || e.target
           let targetImage = this.$refs.targetImage;
